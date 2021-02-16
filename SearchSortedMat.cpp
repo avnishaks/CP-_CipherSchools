@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+//Efficient solution
 int main(){
     int row, col;
     cin >> row >> col;
@@ -13,12 +14,28 @@ int main(){
     cout << "Enter the search value" << "\n";
     cin >> search;
     bool found = false;
-    for (int i = 0; i < row;i++){
-        for (int j = 0; j < col;j++){
-            if(arr[i][j]==search){
-                found = true;
-            }
+    int low = arr[0][0], high = arr[row - 1][col - 1];
+    if(search<low||search>high){
+        found = false;
+    }
+    int i = 0, j = col - 1;
+    while(i<col&&j>=0){
+        if(arr[i][j]==search){
+            found = true;
+            break;
+        }
+        if(arr[i][j]>search){
+            j--;
+        }
+        else{
+            i++;
         }
     }
-    cout << found << endl;
+    if(found==true){
+        cout << "Yes" << endl;
+        cout << i << " " << j;
+    }
+    else{
+        cout << "No" << endl;
+    }
 }
